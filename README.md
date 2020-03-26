@@ -1,0 +1,1 @@
+# shop-GTM-template-core
