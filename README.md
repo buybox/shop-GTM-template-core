@@ -1,1 +1,1 @@
-# shop-GTM-template-core
+# BUY.BOX GTM template for shops - Core template
