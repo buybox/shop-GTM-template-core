@@ -1,5 +1,5 @@
 homepage: "https://getbuybox.com/"
 documentation: "https://help.getbuybox.com/pl/articles/1290807-skrypty-sklepowe"
 versions:
-  - sha: 5f02a788b90ae804f86b04aa24af8937e567874a
+  - sha: bf401e19f096395e624e4edc5541a61cfc0b9c90
     changeNotes: Initial release.
