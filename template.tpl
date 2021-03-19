@@ -49,6 +49,7 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
+const log = require('logToConsole');
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
 const copyFromWindow = require('copyFromWindow');
@@ -70,6 +71,12 @@ function injectBuybox(onInject, onFail) {
   const noTracking = data.noTracking;
   const campaignId = data.campaignId;
   const bb = createArgumentsQueue();
+  if (!campaignId) {
+    log({
+      code: 'ERR_MISSING_CAMPAIGN_ID',
+      message: 'Missing campaign ID'
+    });
+  }
   setInWindow('bb.campaignId', campaignId);
   setInWindow('bbDisableTracking', noTracking);
   injectScript('https://shop-js.buybox.click/js/bb-shop.min.js', onInject, onFail, 'bb-shop');
@@ -81,6 +88,27 @@ injectBuybox(data.gtmOnSuccess, data.gtmOnFailure);
 ___WEB_PERMISSIONS___
 
 [
+  {
+    "instance": {
+      "key": {
+        "publicId": "logging",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "environments",
+          "value": {
+            "type": 1,
+            "string": "all"
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
   {
     "instance": {
       "key": {
