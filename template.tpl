@@ -33,6 +33,31 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
+    "type": "SELECT",
+    "name": "market",
+    "displayName": "Market",
+    "selectItems": [
+      {
+        "value": "pl",
+        "displayValue": "Poland"
+      },
+      {
+        "value": "ee",
+        "displayValue": "Estonia"
+      },
+      {
+        "value": "lt",
+        "displayValue": "Lithuania"
+      },
+      {
+        "value": "lv",
+        "displayValue": "Latvia"
+      }
+    ],
+    "simpleValueType": true,
+    "defaultValue": "pl"
+  },
+  {
     "type": "TEXT",
     "name": "campaignId",
     "displayName": "Campaign ID",
@@ -53,6 +78,12 @@ const log = require('logToConsole');
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
 const copyFromWindow = require('copyFromWindow');
+const scriptByMarket = {
+  pl: 'https://shop-js.buybox.click/js/bb-shop.min.js',
+  ee: 'https://shop-ee.100shoppers.com/js/bb-shop.min.js',
+  lt: 'https://shop-lt.100shoppers.com/js/bb-shop.min.js',
+  lv: 'https://shop-lv.100shoppers.com/js/bb-shop.min.js',
+};
 
 function createArgumentsQueue() {
   const bb = function () {
@@ -68,6 +99,7 @@ function createArgumentsQueue() {
 }
 
 function injectBuybox(onInject, onFail) {
+  const market = data.market || 'pl';
   const noTracking = data.noTracking;
   const campaignId = data.campaignId;
   const bb = createArgumentsQueue();
@@ -79,7 +111,7 @@ function injectBuybox(onInject, onFail) {
   }
   setInWindow('bb.campaignId', campaignId);
   setInWindow('bbDisableTracking', noTracking);
-  injectScript('https://shop-js.buybox.click/js/bb-shop.min.js', onInject, onFail, 'bb-shop');
+  injectScript(scriptByMarket[market], onInject, onFail, 'bb-shop');
 }
 
 injectBuybox(data.gtmOnSuccess, data.gtmOnFailure);
@@ -302,6 +334,18 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://shop-js.buybox.click/js/bb-shop.min.js"
+              },
+              {
+                "type": 1,
+                "string": "https://shop-ee.100shoppers.com/js/bb-shop.min.js"
+              },
+              {
+                "type": 1,
+                "string": "https://shop-lt.100shoppers.com/js/bb-shop.min.js"
+              },
+              {
+                "type": 1,
+                "string": "https://shop-lv.100shoppers.com/js/bb-shop.min.js"
               }
             ]
           }
