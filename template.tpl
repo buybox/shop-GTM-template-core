@@ -52,6 +52,10 @@ ___TEMPLATE_PARAMETERS___
       {
         "value": "lv",
         "displayValue": "Latvia"
+      },
+      {
+        "value": "at",
+        "displayValue": "Austria"
       }
     ],
     "simpleValueType": true,
@@ -83,6 +87,7 @@ const scriptByMarket = {
   ee: 'https://shop-ee.100shoppers.com/js/bb-shop.min.js',
   lt: 'https://shop-lt.100shoppers.com/js/bb-shop.min.js',
   lv: 'https://shop-lv.100shoppers.com/js/bb-shop.min.js',
+  at: 'https://shop-at.100shoppers.com/js/bb-shop.min.js',
 };
 
 function createArgumentsQueue() {
